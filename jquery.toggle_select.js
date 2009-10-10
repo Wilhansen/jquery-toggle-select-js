@@ -41,18 +41,18 @@
     });
 
 		// Setup events
-		j$(".toggle_switch .toggle_button").click(function() {
+		jQuery(".toggle_switch .toggle_button").click(function() {
       // Don't toggle on the same mouseup as a user drag
       if(!changed)
-        toggle_switch(j$(this).parents(".toggle_switch"));
+        toggle_switch(jQuery(this).parents(".toggle_switch"));
     });
-    j$(".toggle_switch .toggle_button").mousedown(function() {
+    jQuery(".toggle_switch .toggle_button").mousedown(function() {
       // Reset changed on every mousedown
       changed = false;
     })
     
 		// Make center switch draggable
-    j$(".toggle_switch .switch").draggable({ axis:'x', handle: j$(this).find('.toggle_button'), 
+    jQuery(".toggle_switch .switch").draggable({ axis:'x', handle: jQuery(this).find('.toggle_button'), 
       start: function(e, ui) {
         // Called only when the mouse has started dragging, disable toggles
         changed = true;
@@ -69,9 +69,9 @@
       stop: function(e, ui) {
         // If the button is in the middle, move to one position or the other
         if (ui['position'].left > -options_width / 2)
-          switch_on(j$(this).parent());
+          switch_on(jQuery(this).parent());
         else
-          switch_off(j$(this).parent());
+          switch_off(jQuery(this).parent());
       }
     });
   };
