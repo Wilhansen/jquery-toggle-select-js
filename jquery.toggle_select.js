@@ -95,11 +95,15 @@
   }
   function switch_off(toggle_switch) {
     toggle_switch.children(".switch").animate({left: -options_width}, opts.speed);
-    toggle_switch.children("select.toggle").val(toggle_switch.find(".switch .toggle_off").attr('value'));
+    var target = toggle_switch.children("select.toggle");
+    target.val(toggle_switch.find(".switch .toggle_off").attr('value'));
+    jQuery(target).change();
   }
   function switch_on(toggle_switch) {
     toggle_switch.children(".switch").animate({left: '0px'}, opts.speed);
-    toggle_switch.children("select.toggle").val(toggle_switch.find(".switch .toggle_on").attr('value'));
+    var target = toggle_switch.children("select.toggle");
+	target.val(toggle_switch.find(".switch .toggle_on").attr('value'));
+    jQuery(target).change();
   }
   function is_on(toggle_switch) {
     return toggle_switch.children(".switch").css('left') == '0px';
