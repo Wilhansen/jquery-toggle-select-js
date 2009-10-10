@@ -28,9 +28,9 @@
 			
       toggle.append("<span class='toggle_on_side'></span>");
 			toggle.append("<span class='switch'>");
-			toggle.find('.switch').append("<span class='toggle_on' value='" + first_option.attr('value') + "'>" + first_option.text() + "</span>");
+			toggle.find('.switch').append("<span class='toggle_on' value='" + first_option.attr('value') + "'>" + (opts.show_opts ? first_option.text() : "&nbsp;") + "</span>");
 			toggle.find('.switch').append("<span class='toggle_button'></span>");
-			toggle.find('.switch').append("<span class='toggle_off' value='" + second_option.attr('value') + "'>" + second_option.text() + "</span></span>");
+			toggle.find('.switch').append("<span class='toggle_off' value='" + second_option.attr('value') + "'>" + (opts.show_opts ? second_option.text() : "&nbsp;") + "</span></span>");
 			toggle.append("<span class='toggle_off_side'></span>");
 			
 			// Set CSS attributes based on options
@@ -83,7 +83,8 @@
 		switch_width : 39,      // Width of the switch between the two options
 		inner_margin : -3,      // The margin between each option and the switch in the middle
     on           : false,   // Whether the toggle is initially set to on
-    speed        : 100      // Speed of the toggle animation
+    speed        : 100,      // Speed of the toggle animation
+    show_opts	 : true		//Show options labels in the switch
   };
   
   // Private functions
