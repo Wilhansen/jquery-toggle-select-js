@@ -5,15 +5,15 @@
 	var changed;
 	var options_width;
  
-  jQuery.fn.toggle_select = function(options) {
+  $.fn.toggle_select = function(options) {
     // Extend out default options with those provided
-    opts = jQuery.extend({}, jQuery.fn.toggle_select.defaults, options);
+    opts = $.extend({}, $.fn.toggle_select.defaults, options);
     selects = this;
 		options_width = parseInt(opts.width - opts.switch_width);
     
     // Iterate over each matched element
     selects.each(function( ) {
-      $this = jQuery(this);
+      $this = $(this);
 
 			// Make sure the select has at least two options
 			if ($this.children('option').length < 2)
@@ -41,18 +41,18 @@
     });
 
 		// Setup events
-		jQuery(".toggle_switch .toggle_button").click(function() {
+		$(".toggle_switch .toggle_button").click(function() {
       // Don't toggle on the same mouseup as a user drag
       if(!changed)
-        toggle_switch(jQuery(this).parents(".toggle_switch"));
+        toggle_switch($(this).parents(".toggle_switch"));
     });
-    jQuery(".toggle_switch .toggle_button").mousedown(function() {
+    $(".toggle_switch .toggle_button").mousedown(function() {
       // Reset changed on every mousedown
       changed = false;
     })
     
 		// Make center switch draggable
-    jQuery(".toggle_switch .switch").draggable({ axis:'x', handle: jQuery(this).find('.toggle_button'), 
+    $(".toggle_switch .switch").draggable({ axis:'x', handle: $(this).find('.toggle_button'), 
       start: function(e, ui) {
         // Called only when the mouse has started dragging, disable toggles
         changed = true;
@@ -69,15 +69,15 @@
       stop: function(e, ui) {
         // If the button is in the middle, move to one position or the other
         if (ui['position'].left > -options_width / 2)
-          switch_on(jQuery(this).parent());
+          switch_on($(this).parent());
         else
-          switch_off(jQuery(this).parent());
+          switch_off($(this).parent());
       }
     });
   };
 
 	// Set default options for the toggle
-  jQuery.fn.toggle_select.defaults = {
+  $.fn.toggle_select.defaults = {
     width        : 80,      // Width of entire toggle
 		height       : 27,      // Height of entire toggle
 		switch_width : 39,      // Width of the switch between the two options
@@ -98,13 +98,13 @@
     toggle_switch.children(".switch").animate({left: -options_width}, opts.speed);
     var target = toggle_switch.children("select.toggle");
     target.val(toggle_switch.find(".switch .toggle_off").attr('value'));
-    jQuery(target).change();
+    $(target).change();
   }
   function switch_on(toggle_switch) {
     toggle_switch.children(".switch").animate({left: '0px'}, opts.speed);
     var target = toggle_switch.children("select.toggle");
 	target.val(toggle_switch.find(".switch .toggle_on").attr('value'));
-    jQuery(target).change();
+    $(target).change();
   }
   function is_on(toggle_switch) {
     return toggle_switch.children(".switch").css('left') == '0px';
